@@ -6,4 +6,5 @@ build/
 *.nt
 *.q
 *.txt
+!CMakeLists.txt
 nohup.out
