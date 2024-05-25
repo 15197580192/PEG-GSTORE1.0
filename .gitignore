@@ -1,0 +1,9 @@
+.vscode/
+.idea/
+build/
+
+*.sql
+*.nt
+*.q
+*.txt
+nohup.out

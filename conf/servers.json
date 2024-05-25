@@ -1,0 +1,32 @@
+{
+    "sites": [
+        {
+            "ip": "127.0.0.1",
+            "user": "root",
+            "port": 21000,
+			"http_type": "ghttp",
+            "dbuser": "root",
+            "dbpasswd": "123456",
+            "rootPath": "/data1/hzy/gstore/gstore1.2/gStore_21000"
+        },
+        {
+            "ip": "127.0.0.1",
+            "user": "root",
+            "port": 21001,
+			"http_type": "ghttp",
+            "dbuser": "root",
+            "dbpasswd": "123456",
+            "rootPath": "/data1/hzy/gstore/gstore1.2/gStore_21001"
+        },
+        {
+            "ip": "127.0.0.1",
+            "user": "root",
+            "port": 21002,
+			"http_type": "ghttp",
+            "dbuser": "root",
+            "dbpasswd": "123456",
+            "rootPath": "/data1/hzy/gstore/gstore1.2/gStore_21002"
+        }
+		
+   ]
+}
