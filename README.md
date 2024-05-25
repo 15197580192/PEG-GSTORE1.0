@@ -50,7 +50,7 @@ make
 - `dbpasswd`字段表示gStore用户的密码
 - `rootPath`字段表示gStore在节点中的部署路径
 
-> 注意：PEG需要免密登入以上配置的节点，并且启动gStore http服务，才能保证程序正常运行
+> 注意：PEG需要免密登入以上配置的gStore（版本大于1.0）节点，并且通过&后台启动gStore http服务，才能保证程序正常运行
 
 ## 运行
 
@@ -58,17 +58,16 @@ make
 
 ```bash
 # 启动web服务
-[root@localhost gStoreDemo]$ ./build/PEG_Server
+[root@localhost PEG-GSTORE1.0]$ ./build/PEG_Server
 
 # 命令行新建数据库
-[root@localhost gStoreDemo]$ ./build/PEG_Load 数据库名 nt文件路径 分片文件路径
-./build/PEG_Load watdiv /root/projects/PEG/watdiv100K.nt /root/projects/PEG/dataInternalPoints.txt
-./build/PEG_Load watdiv /root/projects/PEG/watdiv100K.nt /root/projects/PEG/watdiv100InternalPoints.txt
+[root@localhost PEG-GSTORE1.0]$ ./build/PEG_Load 数据库名 nt文件路径 分片文件路径
+./build/PEG_Load watdiv data/watdiv100K.nt data/watdiv100K-3.txt
 
 # 命令行查询
-[root@localhost gStoreDemo]$ ./build/PEG_Query 数据库名 SPARQL文件路径
+[root@localhost PEG-GSTORE1.0]$ ./build/PEG_Query 数据库名 SPARQL文件路径
 
 # 命令行删除数据库
-[root@localhost gStoreDemo]$ ./build/PEG_Delete 数据库名
+[root@localhost PEG-GSTORE1.0]$ ./build/PEG_Delete 数据库名
 ```
 
