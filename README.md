@@ -11,7 +11,9 @@
 > 项目中已安装metis可执行文件和antlr库，若无法使用，请自行安装
 
 ## 依赖安装脚本
+```bash
 bash script/build.sh
+```
 
 ## 编译项目
 
