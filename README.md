@@ -10,11 +10,17 @@
 
 > 项目中已安装metis可执行文件和antlr库，若无法使用，请自行安装
 
+## 依赖安装脚本
+bash script/build.sh
+
 ## 编译项目
 
 新建文件夹`build`，然后进入此文件夹，使用cmake进行编译。
 
 ```bash
+# 方法1：脚本自动编译，此命令包含metis和antlr的安装
+bash script/build.sh
+# 方法2：手动编译
 mkdir build
 cd build
 cmake ..
