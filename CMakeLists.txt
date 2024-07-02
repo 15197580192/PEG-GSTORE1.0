@@ -36,6 +36,13 @@ target_link_libraries(PEG_Server ${Boost_LIBRARIES})
 target_link_libraries(PEG_Server curl)
 target_link_libraries(PEG_Server libantlr.a)
 
+# version
+add_executable(PEG_Version PEG_Version.cpp ${gstoreapiSRC} ${parserSRC} ${querySRC} ${utilSRC} ${joinerSRC})
+target_link_libraries(PEG_Version pthread)
+target_link_libraries(PEG_Version ${Boost_LIBRARIES})
+target_link_libraries(PEG_Version curl)
+target_link_libraries(PEG_Version libantlr.a)
+
 # load
 add_executable(PEG_Load PEG_Load.cpp ${gstoreapiSRC} ${parserSRC} ${querySRC} ${utilSRC} ${joinerSRC})
 target_link_libraries(PEG_Load pthread)
