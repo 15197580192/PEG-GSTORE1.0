@@ -69,6 +69,16 @@ int main()
         return res;
     });
 
+    
+    CROW_ROUTE(app, "/api/version")([](const crow::request& req){
+        
+        crow::json::wvalue retv;
+        retv["status"] = "success";
+        retv["message"] = "success";
+        retv["data"] = "PEG V1.0";
+        return retv;
+    });
+
     CROW_ROUTE(app, "/api/build")([](const crow::request& req){
         string dbname = req.url_params.get("dbname");
         string dbpath = req.url_params.get("dbpath");
