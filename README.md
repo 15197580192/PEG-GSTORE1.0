@@ -69,6 +69,7 @@ In the project directory:
 ```bash
 # Start web service 
 [root@localhost PEG]$ ./build/PEG_Server
+http://localhost:18081/static/index.html
 
 # Create a new database from the command line 
 [root@localhost PEG]$ ./build/PEG_Load db_name /path/to/nt/file /path/to/dividefile
