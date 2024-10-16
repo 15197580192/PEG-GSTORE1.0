@@ -1,6 +1,19 @@
-## 环境
+## Deploy the front end
 
-| 库  | 版本|
+1. Clone the front-end file from github and open it through vscode or webStorm.
+2. Cross-domain development environment: modify the **target** in the proxy in the **vue.config.js** file to modify the server address and port of the back-end deployment.
+3. Run **npm run build:prod** to package the files into the **dist** folder.
+4. Put the folder in any location on the server.
+5. Cross-domain deployment environment: Use **nginx** reverse proxy to complete cross-domain.
+6. Modify the root in **location /** to the path where **dist** is located.
+7. Modify the proxy_pass in **location /api/** and modify it to the server address and port of the back-end deployment.
+8. Just visit the deployed address and port number
+
+## Deploy the back end
+
+### Requirements
+
+| Library | Version |
 | --- | --- |
 | g++ | 8.4.1, -std=c++17|
 | boost | 1.68 |
@@ -8,11 +21,16 @@
 | metis | 5.1.0 |
 | antlr | 3.4 |
 
-> 项目中已安装metis可执行文件和antlr库，若无法使用，请自行安装
+> The metis executable and antlr library have been installed in the project. If you cannot use them, please install them yourself.
 
-## 编译项目
-
-新建文件夹`build`，然后进入此文件夹，使用cmake进行编译。
+### Compile the project
+Here we use scripts to install environment and compile
+```
+bash scripts/setup.sh
+bash scripts/build.sh
+```
+#### Manually compile
+Create a new folder called `build`, then get into this folder and use `cmake` to compile manually.
 
 ```bash
 mkdir build
@@ -21,9 +39,9 @@ cmake ..
 make
 ```
 
-## 配置服务器
+### Configure the servers
 
-编辑`conf/servers.json`
+Edit `conf/servers.json`
 
 ```json
 {
@@ -41,33 +59,73 @@ make
 }
 ```
 
-在`sites`中，添加节点对象：
-- `ip`字段表示节点的ip
-- `user`字段表示Linux系统用户
-- `port`字段表示gStore http服务端口
-- `http_type`字段表示http服务类型
-- `dbuser`字段表示gStore的用户名
-- `dbpasswd`字段表示gStore用户的密码
-- `rootPath`字段表示gStore在节点中的部署路径
+In `Sites`, add site objects:：
+- The `IP` field indicates the IP address of the site
+- The `user` field indicates the Linux system user 
+- The `port` field indicates the port of gStore http service 
+- The `http_type` field indicates the gstore http type, we use `ghttp` here
+- The `dbuser` field indicates the username of gStore 
+- The `dbpasswd` field indicates the password of the gStore user 
+- The `rootPath` field indicates the path of gStore deployed in the site 
 
-> 注意：PEG需要免密登入以上配置的gStore（版本大于1.0）节点，并且通过&后台启动gStore http服务，才能保证程序正常运行
+> Note: To ensure the normal running of the program, PEG needs to log in to the site configured above without password and the gStore http service has been started. Note that the version of gStore must be bigger than 1.0.
+> To start gStore http service, firstly get into gStore root path, then run `nohup ./bin/ghttp -p port_num &`.
 
-## 运行
+### How to run
 
-在项目根目录
+In the project directory:
 
 ```bash
-# 启动web服务
-[root@localhost PEG-GSTORE1.0]$ ./build/PEG_Server
+# Start web service 
+[root@localhost PEG]$ ./build/PEG_Server
 
-# 命令行新建数据库
-[root@localhost PEG-GSTORE1.0]$ ./build/PEG_Load 数据库名 nt文件路径 分片文件路径
-./build/PEG_Load watdiv data/watdiv100K.nt data/watdiv100K-3.txt
+# Create a new database from the command line 
+[root@localhost PEG]$ ./build/PEG_Load db_name /path/to/nt/file /path/to/dividefile
 
-# 命令行查询
-[root@localhost PEG-GSTORE1.0]$ ./build/PEG_Query 数据库名 SPARQL文件路径
+# Query from the command line 
+[root@localhost PEG]$ ./build/PEG_Query db_name /path/to/SPARQL/file
 
-# 命令行删除数据库
-[root@localhost PEG-GSTORE1.0]$ ./build/PEG_Delete 数据库名
+# Delete the database from the command line 
+[root@localhost PEG]$ ./build/PEG_Delete db_name
+
+# AddEdge
+[root@localhost PEG]$ ./build/PEG_AddEdge database_name fromVertex perdicate toVertex
+
+# RemoveEdge
+[root@localhost PEG]$ ./build/PEG_RemoveEdge database_name fromVertex perdicate toVertex
+
+# Delete the database from the command line 
+[root@localhost PEG]$ ./build/PEG_Delete db_name
+```
+> when we use `Load`, we need to use the dividefile which maps points to its partition part number, here we provide a divide solution minimal property cut which is in https://github.com/bnu05pp/mpc, the generated `XXInternalPoints.txt` file is the dividefile
+### Algorithm
+> to improve the efficiency, we use the `XXInternalPoints.txt`,please put it in the entity folder, which XX indicates its name.
+```
+# khop
+./build/PEG_Khop database_name <begin, end, propset, k>
+
+# single source shortest path
+./build/PEG_ShortestPath database_name <begin, end>
+
+# clossness centrality
+./build/PEG_ClosenessCentrality database_name vertex_name
+
+# triangle count
+./build/PEG_Triangle2 database_name /path/to/your/triangle/file
+# ./data/triangle.q is an example of /path/to/your/triangle/file
+
+# query neighbor
+./build/PEG_Neighbor database_name in_out(true/false) vertex_name [pred_name] 
+# true indicates forward neighbor,false indicates backword neighbor
+```
+
+Service
+```
+# start server，it will start `PEG_Server` at port 18081 
+[root@localhost gStoreDemo]$ ./scripts/start_server.sh
+# stop server
+[root@localhost gStoreDemo]$ ./scripts/stop_server.sh
+# send get request to port 18081,here we check version
+[root@localhost gStoreDemo]$ curl "http://localhost:18081/api/version"
 ```
 
