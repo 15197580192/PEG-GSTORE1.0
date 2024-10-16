@@ -81,6 +81,7 @@ In the project directory:
 
 # Create a new database from the command line 
 [root@localhost PEG]$ ./build/PEG_Load db_name /path/to/nt/file /path/to/dividefile
+./build/PEG_Load watdiv data/watdiv100K.nt data/watdiv100K-3.txt
 
 # Query from the command line 
 [root@localhost PEG]$ ./build/PEG_Query db_name /path/to/SPARQL/file
