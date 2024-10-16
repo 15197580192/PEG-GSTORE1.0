@@ -1,0 +1,9 @@
+.vscode/
+.idea/
+build/
+
+*.sql
+*.nt
+*.txt
+!CMakeLists.txt
+nohup.out
