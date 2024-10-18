@@ -116,7 +116,7 @@ In the project directory:
 # true indicates forward neighbor,false indicates backword neighbor
 ```
 
-Service
+### Service
 ```
 # start server，it will start `PEG_Server` at port 18081 
 [root@localhost PEG]$ ./scripts/start_server.sh
