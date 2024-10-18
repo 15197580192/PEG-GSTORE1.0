@@ -139,6 +139,6 @@ Service
 8. Just visit the deployed address and port number
 
 ### Another way: no cross-domain
-1. Clone the front-end file from github and open it through vscode or webStorm.
+1. Clone the front-end code from github and open it through vscode or webStorm.
 2. Run **npm run build:prod** to package the files into the **dist** folder.
 3. Replace all files in PEG folder **static** with the files in **dist** , than run PEG_Server and you could look through `http://PEG_server_ip:18081/static/index.html`.
