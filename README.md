@@ -31,7 +31,7 @@ cmake ..
 make
 ```
 
-### Configure the gstore servers
+### Configure the gstore sites
 We use gstores as slave sites.As PEG is distributed system,you are supposed to deploy mutiple gstores sites in advance.
 Edit `conf/servers.json`
 
