@@ -141,4 +141,4 @@ Service
 ### Another way: no cross-domain
 1. Clone the front-end file from github and open it through vscode or webStorm.
 2. Run **npm run build:prod** to package the files into the **dist** folder.
-3. Replace all files in **dist** with the files in PEG folder **static**, than run PEG_Server and you could look through `http://PEG_server_ip:18081/static/index.html`.
+3. Replace all files in PEG folder **static** with the files in **dist** , than run PEG_Server and you could look through `http://PEG_server_ip:18081/static/index.html`.
