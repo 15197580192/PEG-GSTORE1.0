@@ -95,7 +95,7 @@ In the project directory:
 ```
 > when we use `Load`, we need to use the dividefile which maps points to its partition part number, here we provide a divide solution minimal property cut which is in https://github.com/bnu05pp/mpc, the generated `XXInternalPoints.txt` file is the dividefile
 ### Algorithm
-> to improve the efficiency, we use the `XXInternalPoints.txt`,please put it in the entity folder, which XX indicates its name.
+> to improve the efficiency, we use the `XXInternalPoints.txt` to map vertexs' partition number,please put it in the `entity/` folder, which XX must be the same as db_name.
 ```
 # khop
 ./build/PEG_Khop database_name <begin, end, propset, k>
