@@ -35,6 +35,7 @@ make
 
 ### Configure the gstore sites
 We use gstores as slave sites.As PEG is distributed system,you are supposed to deploy mutiple gstores sites in advance.
+As example, we deploy three gstore sites in `conf/servers.json`, which are at `port 21000`、`port 21001` and `port 21002`
 Edit `conf/servers.json`
 
 ```json
