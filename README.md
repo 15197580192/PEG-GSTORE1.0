@@ -119,6 +119,7 @@ Service
 ```
 # start server，it will start `PEG_Server` at port 18081 
 [root@localhost gStoreDemo]$ ./scripts/start_server.sh
+# now you could look through the website `http://localhost:18081/static/index.html`
 # stop server
 [root@localhost gStoreDemo]$ ./scripts/stop_server.sh
 # send get request to port 18081,here we check version
