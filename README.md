@@ -128,7 +128,7 @@ In the project directory:
 ```
 
 ## Deploy the PEG-ui
-[PEG-ui](https://github.com/15197580192/PEG-ui.git) is the front-end codes of PEG
+[PEG-ui](https://github.com/15197580192/PEG-ui.git) is the address of front-end codes of PEG
 1. Clone the front-end file from github and open it through vscode or webStorm.
 2. Cross-domain development environment: modify the **target** in the proxy in the **vue.config.js** file to modify the server address and port of the back-end deployment.
 3. Run **npm run build:prod** to package the files into the **dist** folder.
