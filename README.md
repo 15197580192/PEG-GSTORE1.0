@@ -130,8 +130,9 @@ Service
 1. Clone the front-end file from github and open it through vscode or webStorm.
 2. Cross-domain development environment: modify the **target** in the proxy in the **vue.config.js** file to modify the server address and port of the back-end deployment.
 3. Run **npm run build:prod** to package the files into the **dist** folder.
-4. Put the folder in any location on the server.
-5. Cross-domain deployment environment: Use **nginx** reverse proxy to complete cross-domain.
-6. Modify the root in **location /** to the path where **dist** is located.
-7. Modify the proxy_pass in **location /api/** and modify it to the server address and port of the back-end deployment.
-8. Just visit the deployed address and port number
+   3.1 Another way is put all files of dist/ it into the PEG folder `static/`,in this way we could deploy front end without nginx(we no need to do things followed)
+5. Put the folder in any location on the server.
+6. Cross-domain deployment environment: Use **nginx** reverse proxy to complete cross-domain.
+7. Modify the root in **location /** to the path where **dist** is located.
+8. Modify the proxy_pass in **location /api/** and modify it to the server address and port of the back-end deployment.
+9. Just visit the deployed address and port number
