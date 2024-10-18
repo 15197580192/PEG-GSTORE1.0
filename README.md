@@ -17,7 +17,9 @@
 ### Compile the project
 Here we use scripts to install environment and compile 
 ```
+# install env
 bash scripts/setup.sh
+# compile
 bash scripts/build.sh
 ```
 #### Manually compile
