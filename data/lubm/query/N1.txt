@@ -1,0 +1,4 @@
+select ?X WHERE 
+{ ?X <http://www.lehigh.edu/~zhp2/2004/0401/univ-bench.owl#undergraduateDegreeFrom>	<http://www.University5331.edu> .
+?X <http://www.lehigh.edu/~zhp2/2004/0401/univ-bench.owl#emailAddress>	"GraduateStudent0@Department9.University7.edu" .
+}

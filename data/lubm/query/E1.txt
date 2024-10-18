@@ -1,0 +1,1 @@
+select ?edge where { ?vertex0  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ?vertex3 . ?vertex1 ?edge0 <http://www.lehigh.edu/~zhp2/2004/0401/univ-bench.owl#FullProfessor> . ?vertex0 ?edge ?vertex1 . }

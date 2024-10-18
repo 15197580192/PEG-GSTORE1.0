@@ -1,0 +1,4 @@
+SELECT ?y WHERE {
+<http://www.Department9.University7.edu/Lecturer5/Publication1>	?y	<http://www.Department9.University7.edu/Lecturer5> .
+?a ?b ?c .
+}

@@ -1,0 +1,6 @@
+select  ?neighbor2 ?neighbor3 where 
+{
+   <http://www.Department19.University3.edu/AssistantProfessor6/Publication5> ?edge1 ?neighbor .
+ ?neighbor ?edge2 ?neighbor2 .
+ ?neighbor2 ?edge3 ?neighbor3 .
+}
