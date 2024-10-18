@@ -35,7 +35,7 @@ make
 
 ### Configure the gstore sites
 We use gstores as slave sites.As PEG is distributed system,you are supposed to deploy mutiple gstores sites in advance.
-As example, we deploy three gstore sites in `conf/servers.json`, which are at `port 21000`、`port 21001` and `port 21002`
+As example, we config three gstore sites in `conf/servers.json`, which are at `port 21000`、`port 21001` and `port 21002`.Note that before config you must start them in advance!
 Edit `conf/servers.json`
 
 ```json
@@ -63,8 +63,8 @@ In `Sites`, add site objects:：
 - The `dbpasswd` field indicates the password of the gStore user 
 - The `rootPath` field indicates the path of gStore deployed in the site 
 
-> Note: To ensure the normal running of the program, PEG needs to log in to the site configured above without password and the gStore http service has been started. Note that the version of gStore must be bigger than 1.0.
-> To start gStore http service, firstly get into gStore root path, then run `nohup ./bin/ghttp -p port_num &`.
+> Note: To ensure the normal running of the program, `PEG needs to log in to the site configured above without password` and `the gStore http service has been started`. Note that the version of gStore must be bigger than 1.0.
+> To start gStore http service, firstly get into gStore root path, then run `nohup bin/ghttp -p port_num &`.
 
 ### How to run
 
