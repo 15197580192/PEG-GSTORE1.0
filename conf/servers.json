@@ -7,7 +7,7 @@
 			"http_type": "ghttp",
             "dbuser": "root",
             "dbpasswd": "123456",
-            "rootPath": "/data1/hzy/gstore/gstore1.2/gStore_21000"
+            "rootPath": "/gstore/gstore1.2/gStore_21000"
         },
         {
             "ip": "127.0.0.1",
@@ -16,7 +16,7 @@
 			"http_type": "ghttp",
             "dbuser": "root",
             "dbpasswd": "123456",
-            "rootPath": "/data1/hzy/gstore/gstore1.2/gStore_21001"
+            "rootPath": "/gstore/gstore1.2/gStore_21001"
         },
         {
             "ip": "127.0.0.1",
@@ -25,7 +25,7 @@
 			"http_type": "ghttp",
             "dbuser": "root",
             "dbpasswd": "123456",
-            "rootPath": "/data1/hzy/gstore/gstore1.2/gStore_21002"
+            "rootPath": "/gstore/gstore1.2/gStore_21002"
         }
 		
    ]
