@@ -24,7 +24,7 @@ bash scripts/build.sh
 ```
 #### Manually compile
 This way is included in `scripts/build.sh`,if you run `scripts/build.sh`, there is no need to run Manually compile.
-Create a new folder called `build`, then get into this folder and use `cmake` to compile manually.
+Here Create a new folder called `build`, then get into this folder and use `cmake` to compile manually.
 
 ```bash
 mkdir build
