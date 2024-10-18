@@ -15,12 +15,13 @@
 > The metis executable and antlr library have been installed in the project. If you cannot use them, please install them yourself.
 
 ### Compile the project
-Here we use scripts to install environment and compile
+Here we use scripts to install environment and compile 
 ```
 bash scripts/setup.sh
 bash scripts/build.sh
 ```
 #### Manually compile
+This way is included in `scripts/build.sh`,if you run `scripts/build.sh`, there is no need to run Manually compile.
 Create a new folder called `build`, then get into this folder and use `cmake` to compile manually.
 
 ```bash
@@ -30,16 +31,16 @@ cmake ..
 make
 ```
 
-### Configure the servers
-
+### Configure the gstore servers
+We use gstores as slave sites.As PEG is distributed system,you are supposed to deploy mutiple gstores sites in advance.
 Edit `conf/servers.json`
 
 ```json
 {
     "sites": [
         {
-            "ip": "site's ipv4",
-            "user": "Linux user name",
+            "ip": "gstore severs's ipv4",
+            "user": "the Linux system user",
             "port": "gStore http port",
             "http_type": "ghttp",
             "dbuser": "root",
@@ -51,7 +52,7 @@ Edit `conf/servers.json`
 ```
 
 In `Sites`, add site objects:：
-- The `IP` field indicates the IP address of the site
+- The `IP` field indicates the IP address of the gstore servers
 - The `user` field indicates the Linux system user 
 - The `port` field indicates the port of gStore http service 
 - The `http_type` field indicates the gstore http type, we use `ghttp` here
@@ -123,7 +124,7 @@ Service
 ```
 
 ## Deploy the PEG-ui
-
+(PEG-ui)[https://github.com/15197580192/PEG-ui.git] is the front codes of PEG
 1. Clone the front-end file from github and open it through vscode or webStorm.
 2. Cross-domain development environment: modify the **target** in the proxy in the **vue.config.js** file to modify the server address and port of the back-end deployment.
 3. Run **npm run build:prod** to package the files into the **dist** folder.
