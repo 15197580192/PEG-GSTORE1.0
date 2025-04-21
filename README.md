@@ -68,7 +68,7 @@ In `Sites`, add site objects:：
 ### data
 Here we use [watdiv](https://dsg.uwaterloo.ca/watdiv/) or [lubm](https://swat.cse.lehigh.edu/projects/lubm/) dataset for test.
 Also In the folder `data`, you could find some data files and query files.
-As lubm gerenate owl format data defaultly, you could look into the nt format generator[ntuba-lubm-generator](https://github.com/15197580192/ntuba-lubm-generator) .
+As lubm gerenate owl format data defaultly, you could look into the nt format generator [ntuba-lubm-generator](https://github.com/15197580192/ntuba-lubm-generator) .
 ### How to run
 
 In the project directory:
