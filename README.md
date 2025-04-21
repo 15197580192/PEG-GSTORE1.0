@@ -65,7 +65,9 @@ In `Sites`, add site objects:：
 
 > Note: To ensure the normal running of the program, `PEG needs to log in to the site configured above without password` and `the gStore http service has been started`. Note that the version of gStore must be bigger than 1.0.
 > To start gStore http service, firstly get into gStore root path, then run `nohup bin/ghttp -p port_num &`.
-
+### data
+Here we use [watdiv](https://dsg.uwaterloo.ca/watdiv/) or [lubm](https://swat.cse.lehigh.edu/projects/lubm/) dataset for test
+As lubm gerenate owl format data defaultly, you could look into the nt format generator[ntuba-lubm-generator](https://github.com/15197580192/ntuba-lubm-generator) 
 ### How to run
 
 In the project directory:
