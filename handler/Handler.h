@@ -429,84 +429,185 @@ int deleteDB(crow::json::rvalue &confJson, std::vector<GstoreConnector *> &serve
     return 0;
 }
 
+// string jsonToTxt(const string &jvStr)
+// {
+//     string res = "";
+//     Document document;
+//     vector<string> vars;
+//     try{
+//     if (document.Parse(jvStr.c_str()).HasParseError())
+//     {
+//         std::cout << "JsonParseError:";
+//         std::cout << jvStr << endl;
+//         return "JsonParseError";
+//     }
+//     if (!document.HasMember("head") || !document.HasMember("results"))
+//     {
+//         return "[empty result]";
+//     }
+//     // if (document.Parse(jvStr.c_str()).HasParseError() || !document.HasMember("head") || !document.HasMember("results"))
+//     // {
+//     //     return "[empty result]";
+//     // }
+
+//     Value &jvObject = document["head"];
+//     Value &jvObject1 = document["results"];
+//     if (!jvObject.IsObject() || !jvObject.HasMember("vars") || !jvObject1.IsObject() || !jvObject1.HasMember("bindings"))
+//     {
+//         return "[empty result]";
+//     }
+
+//     Value &jv = jvObject["vars"];
+//     for (SizeType i = 0; i < jv.Size(); i++)
+//     {
+//         res += "?";
+//         res += jv[i].GetString();
+//         vars.push_back(jv[i].GetString());
+//         res += "\t";
+//     }
+//     // 末尾\t替换为\n
+//     res.pop_back();
+//     res += "\n";
+
+//     if(!jvObject1.HasMember("bindings")) return "[empty result]";
+//     Value &jv1 = jvObject1["bindings"];
+//     if (jv1.Size() == 0)
+//     {
+//         return "[empty result]";
+//     }
+
+//     for (SizeType i = 0; i < jv1.Size(); i++)
+//     {
+//         Value &tmp = jv1[i];
+//         for (int t = 0; t < vars.size(); t++)
+//         {
+//             Value &tmp1 = tmp[vars[t].c_str()];
+//             if(!tmp1.HasMember("type")||!tmp1.HasMember("value")) {
+//                 // 安全地输出调试信息
+//                 if (tmp1.IsString()) {
+//                     cout << "Missing type/value for: " << tmp1.GetString() << endl;
+//                 } else {
+//                     cout << "Missing type/value for non-string value" << endl;
+//                 }
+//                 continue;
+//             }
+//             string type = tmp1["type"].GetString();
+//             string value = tmp1["value"].GetString();
+//             if (type == "uri")
+//             {
+//                 value = "<" + value + ">";
+//             }
+//             else if (type == "literal")
+//             {
+//                 value = "\"" + value + "\"";
+//             }
+//             else if (type == "typed-literal")
+//             {
+//                 // eg:“3”^^<http://www.w3.org/2001/XMLSchema#integer>
+//                 // json返回type,value,datatype
+//                 // datatype忽略?
+//                 value = "\"" + value + "\"";
+//             }
+//             res += value;
+//             res += "\t";
+//         }
+//         // 末尾\t替换为\n
+//         res.pop_back();
+//         res += "\n";
+//     }
+//     // 去掉多余的\n
+//     res.pop_back();
+
+//     document.Clear();
+
+//     return res;
+//     } catch(exception e){
+//         std::cout<<jvStr<<std::endl;
+//         document.Clear();
+//         return "[empty result]";
+//     }
+// }
 string jsonToTxt(const string &jvStr)
 {
     string res = "";
     Document document;
     vector<string> vars;
-    if (document.Parse(jvStr.c_str()).HasParseError())
-    {
-        std::cout << "JsonParseError" << endl;
-        return "JsonParseError";
-    }
-    if (!document.HasMember("head") || !document.HasMember("results"))
-    {
-        return "[empty result]";
-    }
-    // if (document.Parse(jvStr.c_str()).HasParseError() || !document.HasMember("head") || !document.HasMember("results"))
-    // {
-    //     return "[empty result]";
-    // }
-
-    Value &jvObject = document["head"];
-    Value &jvObject1 = document["results"];
-    if (!jvObject.IsObject() || !jvObject.HasMember("vars") || !jvObject1.IsObject() || !jvObject1.HasMember("bindings"))
-    {
-        return "[empty result]";
-    }
-
-    Value &jv = jvObject["vars"];
-    for (SizeType i = 0; i < jv.Size(); i++)
-    {
-        res += "?";
-        res += jv[i].GetString();
-        vars.push_back(jv[i].GetString());
-        res += "\t";
-    }
-    // 末尾\t替换为\n
-    res.pop_back();
-    res += "\n";
-
-    Value &jv1 = jvObject1["bindings"];
-    if (jv1.Size() == 0)
-    {
-        return "[empty result]";
-    }
-
-    for (SizeType i = 0; i < jv1.Size(); i++)
-    {
-        Value &tmp = jv1[i];
-        for (int t = 0; t < vars.size(); t++)
-        {
-            Value &tmp1 = tmp[vars[t].c_str()];
-            string type = tmp1["type"].GetString();
-            string value = tmp1["value"].GetString();
-            if (type == "uri")
-            {
-                value = "<" + value + ">";
-            }
-            else if (type == "literal")
-            {
-                value = "\"" + value + "\"";
-            }
-            else if (type == "typed-literal")
-            {
-                // eg:“3”^^<http://www.w3.org/2001/XMLSchema#integer>
-                // json返回type,value,datatype
-                // datatype忽略?
-                value = "\"" + value + "\"";
-            }
-            res += value;
-            res += "\t";
+    
+    try {
+        if (document.Parse(jvStr.c_str()).HasParseError()) {
+            return "JsonParseError";
         }
-        // 末尾\t替换为\n
-        res.pop_back();
-        res += "\n";
-    }
-    // 去掉多余的\n
-    res.pop_back();
+        
+        if (!document.HasMember("head") || !document.HasMember("results") ||
+            !document["head"].IsObject() || !document["results"].IsObject()) {
+            return "[empty result]";
+        }
 
-    return res;
+        Value &head = document["head"];
+        Value &results = document["results"];
+        
+        if (!head.HasMember("vars") || !head["vars"].IsArray() ||
+            !results.HasMember("bindings") || !results["bindings"].IsArray()) {
+            return "[empty result]";
+        }
+
+        // 处理表头
+        Value &varsArray = head["vars"];
+        for (SizeType i = 0; i < varsArray.Size(); i++) {
+            if (varsArray[i].IsString()) {
+                res += "?" + string(varsArray[i].GetString()) + "\t";
+                vars.push_back(varsArray[i].GetString());
+            }
+        }
+        
+        if (!res.empty()) res.back() = '\n';
+
+        // 处理数据行
+        Value &bindings = results["bindings"];
+        if (bindings.Size() == 0) {
+            return "[empty result]";
+        }
+
+        for (SizeType i = 0; i < bindings.Size(); i++) {
+            if (!bindings[i].IsObject()) continue;
+            
+            Value &binding = bindings[i];
+            for (const auto &var : vars) {
+                // 安全查找：避免断言失败
+                auto it = binding.FindMember(var.c_str());
+                if (it == binding.MemberEnd() || !it->value.IsObject()) {
+                    res += "\t";
+                    continue;
+                }
+                
+                Value &field = it->value;
+                if (field.HasMember("type") && field.HasMember("value") &&
+                    field["type"].IsString() && field["value"].IsString()) {
+                    
+                    string type = field["type"].GetString();
+                    string value = field["value"].GetString();
+                    
+                    if (type == "uri") {
+                        value = "<" + value + ">";
+                    } else if (type == "literal" || type == "typed-literal") {
+                        value = "\"" + value + "\"";
+                    }
+                    res += value;
+                }
+                res += "\t";
+            }
+            if (!res.empty()) res.back() = '\n';
+        }
+        
+        if (!res.empty() && res.back() == '\n') {
+            res.pop_back();
+        }
+
+        return res.empty() ? "[empty result]" : res;
+        
+    } catch(const exception &e) {
+        return "[empty result]";
+    }
 }
 
 // 生成sql语句（BGP）
