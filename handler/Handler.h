@@ -576,7 +576,7 @@ string jsonToTxt(const string &jvStr)
                 // 安全查找：避免断言失败
                 auto it = binding.FindMember(var.c_str());
                 if (it == binding.MemberEnd() || !it->value.IsObject()) {
-                    res += "\t";
+                    res += "null\t";
                     continue;
                 }
                 
