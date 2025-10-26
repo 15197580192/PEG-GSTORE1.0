@@ -286,7 +286,7 @@ std::string query(crow::json::rvalue &confJson, std::vector<GstoreConnector *> &
                         std::cout << "query " << i << " server " << j << " No response " << std::endl;
                         continue;
                     }
-                    else if (temp_res.find("[empty result]") != std::string::npos) // 查出的结果是空集
+                    else if (temp_res.find("[empty result]") != std::string::npos||temp_res.find("JsonParseError") != std::string::npos) // 查出的结果是空集
                     {
                         std::cout << "query " << i << " server " << j << " Empty" << std::endl;
                         continue;
